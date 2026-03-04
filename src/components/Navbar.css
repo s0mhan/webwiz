@@ -1,0 +1,117 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    transition: all var(--transition-normal);
+}
+
+.navbar.scrolled {
+    padding: 1rem 0;
+    background: rgba(15, 7, 27, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--color-white);
+}
+
+.logo-dot {
+    color: var(--color-ultra-violet);
+}
+
+.nav-links {
+    display: none;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-links a:not(.btn) {
+    font-weight: 500;
+    color: var(--color-silver-mist);
+    position: relative;
+}
+
+.nav-links a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-ultra-violet);
+    transition: width var(--transition-fast);
+}
+
+.nav-links a:not(.btn):hover {
+    color: var(--color-white);
+}
+
+.nav-links a:not(.btn):hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    padding: 0.6rem 1.5rem;
+}
+
+.mobile-menu-btn {
+    display: block;
+    background: transparent;
+    color: var(--color-white);
+    padding: 0.5rem;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--color-deep-shadow);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 999;
+}
+
+.mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-menu a {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+}
