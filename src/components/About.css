@@ -1,0 +1,53 @@
+.about {
+    position: relative;
+    z-index: 2;
+    background: var(--color-deep-shadow);
+}
+
+.about-header {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.about-desc {
+    font-size: 1.2rem;
+    color: var(--color-silver-mist);
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.highlight-card {
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.highlight-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-ultra-violet);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.highlight-card:hover .highlight-icon {
+    background: var(--color-ultra-violet);
+    color: var(--color-white);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-glow);
+}
+
+@media (min-width: 768px) {
+    .highlights-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
