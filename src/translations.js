@@ -10,7 +10,7 @@ export const translations = {
         },
         hero: {
             badge: "Top Web Agency in Bangladesh",
-            title: "Magical Websites That Grow Your Business",
+            title: "We Build Websites That Grow Your Business",
             desc: "We build premium, high-converting digital experiences for local businesses. Specialized in turning visitors into customers.",
             getStarted: "Get Started",
             viewServices: "View Services"

@@ -34,9 +34,14 @@ const Hero = () => {
                     transition={{ delay: 0.1 }}
                     className="hero-title"
                 >
-                    {t('hero.title').split('Website')[0]}
-                    <span className="text-gradient"> {t('hero.title').includes('Website') ? 'Website' : ''} </span>
-                    {t('hero.title').split('Website')[1]}
+                    {language === 'en' ? (
+                        <>
+                            We Build <span className="text-gradient">Websites</span> That <br className="hidden-mobile" />
+                            Grow Your Business.
+                        </>
+                    ) : (
+                        t('hero.title')
+                    )}
                 </motion.h1>
 
                 <motion.p 
