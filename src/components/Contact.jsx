@@ -19,8 +19,21 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // In a real app, this would send the data to a backend
-        alert('Thank you for your message! We will get back to you soon.');
+        
+        const phoneNumber = '8801577044432';
+        const message = `Hi Webwiz!
+        
+My Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email || 'Not provided'}
+
+Message: ${formData.message}`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        window.open(whatsappUrl, '_blank');
+        
         setFormData({ name: '', phone: '', email: '', message: '' });
     };
 
