@@ -124,6 +124,8 @@ const Contact = () => {
             >
                 <MessageCircle size={30} />
             </a>
+                <MessageCircle size={30} />
+            </a>
         </section>
     );
 };
