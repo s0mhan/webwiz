@@ -43,7 +43,7 @@ const Footer = () => {
                     <ul>
                         <li><MapPin size={18} className="contact-icon" /> Dhaka, Bangladesh</li>
                         <li><Mail size={18} className="contact-icon" /> webwiz551@gmail.com</li>
-                        <li><Phone size={18} className="contact-icon" /> +880 1819-151185</li>
+                        <li><Phone size={18} className="contact-icon" /> +880 1577-044432</li>
                     </ul>
                 </div>
             </div>

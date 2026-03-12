@@ -38,7 +38,7 @@ const Contact = () => {
 
                         <div className="contact-methods">
                             <a
-                                href="https://wa.me/8801234567890"
+                                href="https://wa.me/8801577044432"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="whatsapp-btn"
@@ -116,7 +116,7 @@ const Contact = () => {
 
             {/* Floating WhatsApp Button */}
             <a
-                href="https://wa.me/8801819151185"
+                href="https://wa.me/8801577044432"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="floating-whatsapp"
