@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import './Hero.css';
 
 const Hero = () => {
-    const { t } = useLanguage();
+    const { language, t } = useLanguage();
 
     const fadeInUp = {
         hidden: { opacity: 0, y: 30 },
