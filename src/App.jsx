@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -6,51 +6,27 @@ import Services from './components/Services'
 import WhyChooseUs from './components/WhyChooseUs'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Process from './components/Process'
+import Pricing from './components/Pricing'
+import { LanguageProvider } from './context/LanguageContext'
+import { translations } from './translations'
 import './App.css'
 
 function App() {
-  useEffect(() => {
-    const observerCallback = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Select all elements with animation classes
-    const elementsToAnimate = document.querySelectorAll(
-      '.animate-fade-in-up, .feature-block, .service-card, .highlight-card'
-    );
-
-    elementsToAnimate.forEach(el => observer.observe(el));
-
-    return () => {
-      elementsToAnimate.forEach(el => observer.unobserve(el));
-    };
-  }, []);
-
   return (
-    <>
+    <LanguageProvider translations={translations}>
       <Navbar />
       <main>
         <Hero />
         <About />
         <Services />
+        <Process />
         <WhyChooseUs />
+        <Pricing />
         <Contact />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   )
 }
 

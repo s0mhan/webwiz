@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Send, MessageCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Contact.css';
 
 const Contact = () => {
+    const { t } = useLanguage();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -43,10 +46,16 @@ Message: ${formData.message}`;
                 <div className="contact-grid">
 
                     {/* Contact Info Side */}
-                    <div className="contact-info">
-                        <h2>Ready to Grow Your Business?</h2>
+                    <motion.div 
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="contact-info"
+                    >
+                        <h2>{t('contact.title')}</h2>
                         <p className="contact-desc">
-                            Let's build something amazing together. Fill out the form or reach out directly via WhatsApp for a faster response.
+                            {t('contact.desc')}
                         </p>
 
                         <div className="contact-methods">
@@ -57,17 +66,23 @@ Message: ${formData.message}`;
                                 className="whatsapp-btn"
                             >
                                 <MessageCircle size={24} />
-                                <span>Chat on WhatsApp</span>
+                                <span>{t('contact.whatsAppChat')}</span>
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Contact Form Side */}
-                    <div className="contact-form-wrapper glass-card">
-                        <h3>Send Us a Message</h3>
+                    <motion.div 
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="contact-form-wrapper glass-card"
+                    >
+                        <h3>{t('contact.form.title')}</h3>
                         <form onSubmit={handleSubmit} className="contact-form">
                             <div className="form-group">
-                                <label htmlFor="name">Full Name</label>
+                                <label htmlFor="name">{t('contact.form.name')}</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -81,7 +96,7 @@ Message: ${formData.message}`;
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="phone">Phone Number</label>
+                                    <label htmlFor="phone">{t('contact.form.phone')}</label>
                                     <input
                                         type="tel"
                                         id="phone"
@@ -94,7 +109,7 @@ Message: ${formData.message}`;
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="email">Email Address</label>
+                                    <label htmlFor="email">{t('contact.form.email')}</label>
                                     <input
                                         type="email"
                                         id="email"
@@ -107,7 +122,7 @@ Message: ${formData.message}`;
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="message">How can we help you?</label>
+                                <label htmlFor="message">{t('contact.form.message')}</label>
                                 <textarea
                                     id="message"
                                     name="message"
@@ -120,15 +135,18 @@ Message: ${formData.message}`;
                             </div>
 
                             <button type="submit" className="btn btn-primary submit-btn">
-                                Send Message <Send size={18} />
+                                {t('contact.form.submit')} <Send size={18} />
                             </button>
                         </form>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* Floating WhatsApp Button */}
-            <a
+            <motion.a
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
                 href="https://wa.me/8801577044432"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,7 +154,7 @@ Message: ${formData.message}`;
                 aria-label="Chat on WhatsApp"
             >
                 <MessageCircle size={30} />
-            </a>
+            </motion.a>
         </section>
     );
 };

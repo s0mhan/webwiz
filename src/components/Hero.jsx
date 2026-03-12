@@ -1,35 +1,68 @@
+import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Hero.css';
 
 const Hero = () => {
+    const { t } = useLanguage();
+
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    };
+
     return (
         <section id="home" className="hero">
             <div className="hero-glow hero-glow-1"></div>
             <div className="hero-glow hero-glow-2"></div>
 
             <div className="container hero-container text-center">
-                <div className="hero-badge animate-fade-in-up">
+                <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeInUp}
+                    className="hero-badge"
+                >
                     <Sparkles size={16} className="text-ultra-violet" />
-                    <span>Premier Digital Agency in Bangladesh</span>
-                </div>
+                    <span>{t('hero.badge')}</span>
+                </motion.div>
 
-                <h1 className="hero-title animate-fade-in-up delay-100">
-                    We Build Websites That <br className="hidden-mobile" />
-                    <span className="text-gradient">Grow Your Business.</span>
-                </h1>
+                <motion.h1 
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeInUp}
+                    transition={{ delay: 0.1 }}
+                    className="hero-title"
+                >
+                    {t('hero.title').split('Website')[0]}
+                    <span className="text-gradient"> {t('hero.title').includes('Website') ? 'Website' : ''} </span>
+                    {t('hero.title').split('Website')[1]}
+                </motion.h1>
 
-                <p className="hero-subtitle animate-fade-in-up delay-200">
-                    Modern websites and digital tools for local businesses in Bangladesh. Establish a powerful online presence designed to convert visitors into loyal customers.
-                </p>
+                <motion.p 
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeInUp}
+                    transition={{ delay: 0.2 }}
+                    className="hero-subtitle"
+                >
+                    {t('hero.desc')}
+                </motion.p>
 
-                <div className="hero-actions animate-fade-in-up delay-300">
+                <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeInUp}
+                    transition={{ delay: 0.3 }}
+                    className="hero-actions"
+                >
                     <a href="#contact" className="btn btn-primary btn-lg">
-                        Get Started <ArrowRight size={18} />
+                        {t('hero.getStarted')} <ArrowRight size={18} />
                     </a>
                     <a href="#services" className="btn btn-secondary btn-lg">
-                        View Services
+                        {t('hero.viewServices')}
                     </a>
-                </div>
+                </motion.div>
             </div>
 
             <div className="hero-particles">

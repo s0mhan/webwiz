@@ -1,125 +1,56 @@
+import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Services.css';
 
 const Services = () => {
-    const services = [
-        {
-            title: "Business Website",
-            price: "15,000",
-            description: "Professional multi-page website for established businesses.",
-            features: [
-                "1–5 page website",
-                "Mobile responsive design",
-                "Basic SEO setup",
-                "WhatsApp call-to-action button",
-                "Contact form integration",
-                "Google Maps embed"
-            ],
-            btnText: "Get This Package",
-            isPopular: true
-        },
-        {
-            title: "Google Visibility Profile Setup",
-            price: "5,000",
-            description: "Dominate local search results and attract nearby customers.",
-            features: [
-                "Business profile setup & verification",
-                "Optimized description",
-                "Categories & services setup",
-                "Image optimization",
-                "Basic keyword positioning"
-            ],
-            btnText: "Improve My Visibility",
-            isPopular: false
-        },
-        {
-            title: "Landing Page for Ads",
-            price: "10,000",
-            description: "High-converting single-page website designed specifically for paid advertisements.",
-            features: [
-                "Single focused page",
-                "High-conversion layout",
-                "Fast loading speed",
-                "Lead capture forms",
-                "Analytics integration"
-            ],
-            btnText: "Create My Landing Page",
-            isPopular: false
-        },
-        {
-            title: "Maintenance Plan",
-            price: "2,000/mo",
-            description: "Keep your website secure, fast, and up-to-date.",
-            features: [
-                "Hosting management",
-                "Regular software updates",
-                "Automated backups",
-                "Small content edits",
-                "Performance optimization"
-            ],
-            btnText: "Start Maintenance",
-            isPopular: false
-        },
-        {
-            title: "Custom Solution",
-            price: "Custom",
-            description: "Any custom tool or system needed to help your business grow or manage operations.",
-            features: [
-                "Tailored web applications",
-                "Inventory management systems",
-                "Custom booking systems",
-                "3rd party API integrations",
-                "Dedicated structural planning"
-            ],
-            btnText: "Contact Us for Custom Quote",
-            isPopular: false
-        }
-    ];
+    const { t } = useLanguage();
+    
+    const serviceKeys = ['business', 'visibility', 'landing', 'maintenance'];
 
     return (
         <section id="services" className="services">
             <div className="container">
-                <h2>Our Services</h2>
-                <p className="services-subtitle text-center">
-                    Comprehensive digital solutions tailored for your business needs.
-                </p>
-
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                >
+                    {t('services.title')}
+                </motion.h2>
+                
                 <div className="services-grid">
-                    {services.map((service, index) => (
-                        <div key={index} className={`service-card glass-card ${service.isPopular ? 'popular' : ''}`}>
-                            {service.isPopular && <div className="popular-badge">Most Popular</div>}
+                    {serviceKeys.map((key, index) => {
+                        const service = t(`services.items.${key}`);
+                        return (
+                            <motion.div 
+                                key={index} 
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.6 }}
+                                className={`service-card glass-card`}
+                            >
+                                <div className="service-header">
+                                    <h3>{service.title}</h3>
+                                    <p className="service-desc">{service.desc}</p>
+                                </div>
 
-                            <div className="service-header">
-                                <h3>{service.title}</h3>
-                                <p className="service-desc">{service.description}</p>
-                            </div>
+                                <ul className="service-features">
+                                    {[1, 2, 3].map((_, i) => (
+                                        <li key={i}>
+                                            <CheckCircle size={18} className="text-ultra-violet" />
+                                            <span>{t('about.points')[i % 4]}</span>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                            <div className="service-price">
-                                {service.price === 'Custom' ? (
-                                    <span className="price-amount">Tailored Quote</span>
-                                ) : (
-                                    <>
-                                        <span className="price-currency">৳</span>
-                                        <span className="price-amount">{service.price}</span>
-                                        {service.price.includes('/mo') ? '' : <span className="price-period"> BDT</span>}
-                                    </>
-                                )}
-                            </div>
-
-                            <ul className="service-features">
-                                {service.features.map((feature, i) => (
-                                    <li key={i}>
-                                        <CheckCircle size={18} className="text-ultra-violet" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <a href="#contact" className="btn btn-primary service-btn">
-                                {service.btnText}
-                            </a>
-                        </div>
-                    ))}
+                                <a href="#contact" className="btn btn-primary service-btn">
+                                    {t('hero.getStarted')}
+                                </a>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

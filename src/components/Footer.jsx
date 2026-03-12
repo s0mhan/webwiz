@@ -1,7 +1,10 @@
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Footer.css';
 
 const Footer = () => {
+    const { t } = useLanguage();
+
     return (
         <footer className="footer">
             <div className="container footer-grid">
@@ -10,7 +13,7 @@ const Footer = () => {
                         Webwiz<span className="logo-dot">.</span>
                     </a>
                     <p className="footer-desc">
-                        Modern websites and digital tools for local businesses in Bangladesh. We build high-converting digital experiences.
+                        {t('footer.desc')}
                     </p>
                     <div className="social-links">
                         <a href="https://www.facebook.com/share/1bFN4iER8b/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
@@ -19,27 +22,27 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-links">
-                    <h3>Quick Links</h3>
+                    <h3>{t('nav.about')}</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Our Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home">{t('nav.home')}</a></li>
+                        <li><a href="#about">{t('nav.about')}</a></li>
+                        <li><a href="#services">{t('nav.services')}</a></li>
+                        <li><a href="#contact">{t('nav.contact')}</a></li>
                     </ul>
                 </div>
 
                 <div className="footer-links">
-                    <h3>Services</h3>
+                    <h3>{t('nav.services')}</h3>
                     <ul>
-                        <li><a href="#services">Business Website</a></li>
-                        <li><a href="#services">Google Visibility</a></li>
-                        <li><a href="#services">Landing Pages</a></li>
-                        <li><a href="#services">Maintenance Plan</a></li>
+                        <li><a href="#services">{t('services.items.business.title')}</a></li>
+                        <li><a href="#services">{t('services.items.visibility.title')}</a></li>
+                        <li><a href="#services">{t('services.items.landing.title')}</a></li>
+                        <li><a href="#pricing">{t('nav.pricing')}</a></li>
                     </ul>
                 </div>
 
                 <div className="footer-contact">
-                    <h3>Contact Us</h3>
+                    <h3>{t('nav.contact')}</h3>
                     <ul>
                         <li><MapPin size={18} className="contact-icon" /> Dhaka, Bangladesh</li>
                         <li><Mail size={18} className="contact-icon" /> webwiz551@gmail.com</li>
@@ -50,7 +53,7 @@ const Footer = () => {
 
             <div className="footer-bottom">
                 <div className="container text-center">
-                    <p>&copy; 2026 Webwiz. All rights reserved.</p>
+                    <p>{t('footer.copy')}</p>
                 </div>
             </div>
         </footer>

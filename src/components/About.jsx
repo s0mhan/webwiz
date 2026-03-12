@@ -1,46 +1,68 @@
-import { Zap, Target, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Zap, Target, TrendingUp, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './About.css';
 
 const About = () => {
-    const highlights = [
-        {
-            icon: <Zap size={32} />,
-            title: "Fast Delivery",
-            description: "Get your business online quickly without compromising on quality or performance."
-        },
-        {
-            icon: <Target size={32} />,
-            title: "Conversion-Focused",
-            description: "Every element is designed to turn your website visitors into paying customers."
-        },
-        {
-            icon: <TrendingUp size={32} />,
-            title: "Business Growth Oriented",
-            description: "Scalable digital solutions that grow seamlessly alongside your business."
+    const { t } = useLanguage();
+    
+    const icons = [<Zap size={32} />, <Target size={32} />, <TrendingUp size={32} />, <ShieldCheck size={32} />];
+    const points = t('about.points');
+
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.2
+            }
         }
-    ];
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
 
     return (
         <section id="about" className="about">
             <div className="container">
-                <div className="about-header text-center">
-                    <h2>Empowering Local Businesses</h2>
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="about-header text-center"
+                >
+                    <h2>{t('about.title')}</h2>
                     <p className="about-desc">
-                        Webwiz helps businesses establish powerful online presence with modern websites, visibility optimization, and custom digital solutions.
+                        {t('about.desc')}
                     </p>
-                </div>
+                </motion.div>
 
-                <div className="highlights-grid">
-                    {highlights.map((item, index) => (
-                        <div key={index} className={`glass-card highlight-card animate-fade-in-up delay-${(index + 1) * 100}`}>
+                <motion.div 
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="highlights-grid"
+                >
+                    {points.map((point, index) => (
+                        <motion.div 
+                            key={index} 
+                            variants={cardVariants}
+                            className="glass-card highlight-card"
+                        >
                             <div className="highlight-icon">
-                                {item.icon}
+                                {icons[index % icons.length]}
                             </div>
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
-                        </div>
+                            <h3>{point}</h3>
+                            <p>{t(`services.items.${['business', 'visibility', 'landing', 'maintenance'][index % 4]}.desc`)}</p>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

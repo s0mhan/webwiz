@@ -1,0 +1,64 @@
+.process-section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    position: relative;
+    margin-top: 4rem;
+}
+
+.process-card {
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--color-ultra-violet);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 1.5rem;
+    box-shadow: var(--shadow-glow);
+}
+
+.step-connector {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .step-connector {
+        display: block;
+        position: absolute;
+        top: 25%;
+        left: 100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-ultra-violet), transparent);
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+}
+
+.process-card h3 {
+    margin-bottom: 1rem;
+    color: var(--color-white);
+}
+
+.process-card p {
+    font-size: 0.95rem;
+    color: var(--color-silver-mist);
+    margin-bottom: 0;
+}
